@@ -5,7 +5,7 @@ import { AiAssistant } from "../components/ui/AiAssistant";
 import { 
   User, Settings, Trophy, Target, Calendar, 
   Smartphone, BookOpen, Eye, EyeOff, Edit, 
-  LogOut, Camera, Heart 
+  LogOut, Camera, Heart, Plus 
 } from "lucide-react";
 import { useState } from "react";
 import { Switch } from "@/components/ui/switch";

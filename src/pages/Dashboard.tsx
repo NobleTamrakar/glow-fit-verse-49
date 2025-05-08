@@ -1,10 +1,9 @@
-
 import { Navbar } from "../components/layout/Navbar";
 import { Footer } from "../components/layout/Footer";
 import { AiAssistant } from "../components/ui/AiAssistant";
 import { 
   Activity, TrendingUp, BarChart2, Droplet, Moon, 
-  Calendar, Award, Target, Plus, BarChart 
+  Calendar, Award, Target, Plus, BarChart as BarChartIcon 
 } from "lucide-react";
 import { useState } from "react";
 import { 
@@ -176,7 +175,7 @@ const Dashboard = () => {
             </div>
             <div className="h-64">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart
+                <RechartBar
                   data={activityData}
                   margin={{ top: 5, right: 5, left: -20, bottom: 5 }}
                 >
@@ -189,7 +188,7 @@ const Dashboard = () => {
                     labelStyle={{ color: '#39FF14' }}
                   />
                   <Bar dataKey="calories" name="Calories Burned" fill="#39FF14" radius={[4, 4, 0, 0]} />
-                </BarChart>
+                </RechartBar>
               </ResponsiveContainer>
             </div>
           </div>
