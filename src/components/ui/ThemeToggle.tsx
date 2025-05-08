@@ -1,8 +1,10 @@
 
 import { useState, useEffect } from 'react';
 import { Moon, Sun } from 'lucide-react';
+import { useToast } from "@/components/ui/use-toast";
 
 export const ThemeToggle = () => {
+  const { toast } = useToast();
   // Check for dark mode preference
   const [isDark, setIsDark] = useState(() => {
     const savedTheme = localStorage.getItem('theme');
@@ -24,9 +26,18 @@ export const ThemeToggle = () => {
     }
   }, [isDark]);
 
+  const toggleTheme = () => {
+    setIsDark(!isDark);
+    toast({
+      title: `Theme changed to ${!isDark ? 'dark' : 'light'} mode`,
+      description: "Your preference has been saved.",
+      duration: 2000,
+    });
+  };
+
   return (
     <button
-      onClick={() => setIsDark(!isDark)}
+      onClick={toggleTheme}
       className={`w-9 h-9 rounded-full flex items-center justify-center transition-colors ${
         isDark 
           ? 'bg-secondary/30 text-gray-300 hover:text-glow-green'

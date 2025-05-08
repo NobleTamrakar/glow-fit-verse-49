@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X } from "lucide-react";
+import { Menu, X, Lock } from "lucide-react";
 import { ThemeToggle } from '../ui/ThemeToggle';
 
 export const Navbar = () => {
@@ -22,8 +22,9 @@ export const Navbar = () => {
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
+            <Lock size={24} className="text-glow-green" />
             <span className="text-2xl font-bold font-orbitron text-white">
-              GLOW<span className="text-glow-green">FIT</span>VERSE
+              LOCKED <span className="text-glow-green">IN</span>
             </span>
           </Link>
 
@@ -43,12 +44,14 @@ export const Navbar = () => {
 
           <div className="flex items-center gap-4">
             <ThemeToggle />
-            <Link 
-              to="/profile" 
-              className="hidden md:flex items-center justify-center w-9 h-9 rounded-full bg-glow-green/20 border border-glow-green/50 text-white hover:bg-glow-green/30 transition-colors"
-            >
-              <span>PL</span>
-            </Link>
+            <div className="relative">
+              <Link 
+                to="/profile" 
+                className="hidden md:flex items-center justify-center w-9 h-9 rounded-full bg-glow-green/20 border border-glow-green/50 text-white hover:bg-glow-green/30 transition-colors"
+              >
+                <span>PL</span>
+              </Link>
+            </div>
             
             {/* Mobile menu button */}
             <button
