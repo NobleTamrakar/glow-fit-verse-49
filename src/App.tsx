@@ -7,6 +7,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
 import Index from "./pages/Index";
 import Fitness from "./pages/Fitness";
+import Nutrition from "./pages/Nutrition";
+import Events from "./pages/Events";
+import Blog from "./pages/Blog";
+import Dashboard from "./pages/Dashboard";
+import Profile from "./pages/Profile";
 import Leaderboard from "./pages/Leaderboard";
 import NotFound from "./pages/NotFound";
 
@@ -23,6 +28,8 @@ const App = () => {
       localStorage.setItem('theme', 'dark');
     } else if (savedTheme === 'dark') {
       document.documentElement.classList.add('dark');
+    } else if (savedTheme === 'light') {
+      document.documentElement.classList.add('light');
     }
   }, []);
 
@@ -35,6 +42,11 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/fitness" element={<Fitness />} />
+            <Route path="/nutrition" element={<Nutrition />} />
+            <Route path="/events" element={<Events />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="/leaderboard" element={<Leaderboard />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

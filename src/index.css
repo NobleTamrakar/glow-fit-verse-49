@@ -115,7 +115,7 @@
   }
   
   .glass-card {
-    @apply bg-black/40 backdrop-blur-md border border-white/10 rounded-md;
+    @apply dark:bg-black/40 bg-white/40 backdrop-blur-md border dark:border-white/10 border-gray-200/50 rounded-md;
   }
 
   .btn-glow {
@@ -126,6 +126,24 @@
   .btn-red {
     @apply px-4 py-2 bg-black border border-glow-red text-white rounded-md 
            hover:bg-glow-red/20 hover:shadow-[0_0_10px_#FF3B3B] transition-all duration-300;
+  }
+
+  .light .glow-card {
+    @apply bg-white/80 border-glow-green/20 shadow-md hover:border-glow-green/50;
+  }
+  
+  .light .glass-card {
+    @apply bg-white/80 border-gray-200;
+  }
+  
+  .light .btn-glow {
+    @apply bg-glow-green/90 border-glow-green text-black
+           hover:bg-glow-green hover:shadow-[0_0_10px_#39FF14];
+  }
+  
+  .light .btn-red {
+    @apply bg-glow-red/90 border-glow-red text-white
+           hover:bg-glow-red hover:shadow-[0_0_10px_#FF3B3B];
   }
 }
 
@@ -145,4 +163,13 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(57, 255, 20, 0.8);
+}
+
+/* Light mode scrollbar */
+.light ::-webkit-scrollbar-track {
+  background: rgba(240, 240, 240, 0.8);
+}
+
+.light ::-webkit-scrollbar-thumb {
+  background: rgba(57, 255, 20, 0.7);
 }

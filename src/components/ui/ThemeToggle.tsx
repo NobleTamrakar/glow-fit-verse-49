@@ -5,7 +5,6 @@ import { useToast } from "@/components/ui/use-toast";
 
 export const ThemeToggle = () => {
   const { toast } = useToast();
-  // Check for dark mode preference
   const [isDark, setIsDark] = useState(() => {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
@@ -19,8 +18,10 @@ export const ThemeToggle = () => {
     // Apply theme class to document
     if (isDark) {
       document.documentElement.classList.add('dark');
+      document.documentElement.classList.remove('light');
       localStorage.setItem('theme', 'dark');
     } else {
+      document.documentElement.classList.add('light');
       document.documentElement.classList.remove('dark');
       localStorage.setItem('theme', 'light');
     }
