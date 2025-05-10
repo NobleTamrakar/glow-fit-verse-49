@@ -40,10 +40,10 @@ export const ThemeToggle = () => {
   return (
     <button
       onClick={toggleTheme}
-      className={`w-9 h-9 rounded-full flex items-center justify-center transition-colors ${
+      className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 ${
         isDark 
-          ? 'bg-secondary/30 text-gray-300 hover:text-glow-green'
-          : 'bg-secondary text-gray-700 hover:text-glow-red'
+          ? 'bg-secondary/30 text-gray-300 hover:text-glow-green hover:bg-secondary/50'
+          : 'bg-secondary/80 text-gray-700 hover:text-glow-red/90 hover:bg-secondary'
       }`}
       aria-label="Toggle theme"
     >

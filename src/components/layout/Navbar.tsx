@@ -18,12 +18,12 @@ export const Navbar = () => {
   ];
 
   return (
-    <nav className="dark:backdrop-blur-md dark:bg-black/50 dark:border-glow-green/20 navbar-bg sticky top-0 z-50">
+    <nav className="dark:backdrop-blur-md dark:bg-black/50 dark:border-glow-green/20 light:bg-white/95 light:border-b light:border-gray-200 light:shadow-sm navbar-bg sticky top-0 z-50">
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
             <Lock size={24} className="text-glow-green" />
-            <span className="text-2xl font-bold font-orbitron dark:text-white text-black">
+            <span className="text-2xl font-bold font-orbitron dark:text-white text-gray-900">
               LOCKED <span className="text-glow-green">IN</span>
             </span>
           </Link>
@@ -34,7 +34,7 @@ export const Navbar = () => {
               <Link
                 key={item.name}
                 to={item.path}
-                className="dark:text-white text-black hover:text-glow-green transition-colors relative group"
+                className="dark:text-white text-gray-800 hover:text-glow-green transition-colors relative group"
               >
                 {item.name}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-glow-green transition-all duration-300 group-hover:w-full"></span>
@@ -47,7 +47,7 @@ export const Navbar = () => {
             <div className="relative">
               <Link 
                 to="/profile" 
-                className="hidden md:flex items-center justify-center w-9 h-9 rounded-full bg-glow-green/20 border border-glow-green/50 dark:text-white text-black hover:bg-glow-green/30 transition-colors"
+                className="hidden md:flex items-center justify-center w-9 h-9 rounded-full bg-glow-green/20 border border-glow-green/50 dark:text-white text-gray-800 hover:bg-glow-green/30 transition-colors"
               >
                 <span>PL</span>
               </Link>
@@ -55,7 +55,7 @@ export const Navbar = () => {
             
             {/* Mobile menu button */}
             <button
-              className="md:hidden dark:text-white text-black hover:text-glow-green"
+              className="md:hidden dark:text-white text-gray-800 hover:text-glow-green"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -72,7 +72,7 @@ export const Navbar = () => {
               <Link
                 key={item.name}
                 to={item.path}
-                className="dark:text-white text-black hover:text-glow-green transition-colors py-2"
+                className="dark:text-white text-gray-800 hover:text-glow-green transition-colors py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.name}
@@ -80,7 +80,7 @@ export const Navbar = () => {
             ))}
             <Link 
               to="/profile" 
-              className="flex items-center gap-2 dark:text-white text-black hover:text-glow-green transition-colors py-2"
+              className="flex items-center gap-2 dark:text-white text-gray-800 hover:text-glow-green transition-colors py-2"
               onClick={() => setIsMenuOpen(false)}
             >
               Profile
