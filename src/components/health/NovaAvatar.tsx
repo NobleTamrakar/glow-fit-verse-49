@@ -2,13 +2,12 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Bot } from 'lucide-react';
-import { useToast } from "@/components/ui/use-toast";
+import { toast } from "sonner";
 
 export const NovaAvatar = () => {
   const [isHovering, setIsHovering] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
   const navigate = useNavigate();
-  const { toast } = useToast();
 
   useEffect(() => {
     // Show tooltip after a delay when component mounts
@@ -28,8 +27,7 @@ export const NovaAvatar = () => {
   }, []);
 
   const handleClick = () => {
-    toast({
-      title: "Nova activated!",
+    toast("Nova activated!", {
       description: "Redirecting to quick-starts...",
       duration: 2000,
     });

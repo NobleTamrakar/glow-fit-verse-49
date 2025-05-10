@@ -6,7 +6,6 @@ import { MindMoodMetrics } from "../components/health/MindMoodMetrics";
 import { PhysicalHealthMetrics } from "../components/health/PhysicalHealthMetrics";
 import { RecoveryReadiness } from "../components/health/RecoveryReadiness"; 
 import { ProgressTrackers } from "../components/health/ProgressTrackers";
-import { AiAssistant } from "../components/ui/AiAssistant";
 import { NovaAvatar } from "../components/health/NovaAvatar";
 
 const Health = () => {
@@ -47,7 +46,6 @@ const Health = () => {
         )}
       </main>
       <Footer />
-      <AiAssistant />
       <NovaAvatar />
     </div>
   );
