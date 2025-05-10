@@ -1,7 +1,7 @@
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Dumbbell, Play, Pause, RotateCcw, Activity, CheckCircle } from 'lucide-react';
-import { useToast } from '@/components/ui/use-toast';
+import { toast } from '@/components/ui/sonner';
 
 export const AIWorkoutTracker = () => {
   const [isTracking, setIsTracking] = useState(false);
@@ -11,8 +11,9 @@ export const AIWorkoutTracker = () => {
   const [exerciseName, setExerciseName] = useState('Push-ups');
   const [elapsed, setElapsed] = useState(0);
   const [videoStream, setVideoStream] = useState<MediaStream | null>(null);
+  const [cameraPermission, setCameraPermission] = useState<'granted' | 'denied' | 'pending'>('pending');
   
-  const { toast } = useToast();
+  const videoRef = useRef<HTMLVideoElement>(null);
   
   // Mock exercise form feedback
   const formFeedback = [
@@ -26,19 +27,21 @@ export const AIWorkoutTracker = () => {
     "Maintain even breathing"
   ];
 
-  // Start and stop camera
+  // Start and stop camera with better error handling
   const toggleCamera = async () => {
     try {
       if (!videoStream) {
+        // Request camera permission
         const stream = await navigator.mediaDevices.getUserMedia({ 
           video: { facingMode: 'user' }
         });
-        setVideoStream(stream);
         
-        // Connect video to element
-        const videoElement = document.getElementById('workout-camera') as HTMLVideoElement;
-        if (videoElement) {
-          videoElement.srcObject = stream;
+        setVideoStream(stream);
+        setCameraPermission('granted');
+        
+        // Connect video to element using ref
+        if (videoRef.current) {
+          videoRef.current.srcObject = stream;
         }
         
         toast({
@@ -47,6 +50,8 @@ export const AIWorkoutTracker = () => {
         });
       }
     } catch (error) {
+      console.error("Camera access error:", error);
+      setCameraPermission('denied');
       toast({
         title: "Camera access denied",
         description: "Please enable camera permissions for workout tracking.",
@@ -54,6 +59,13 @@ export const AIWorkoutTracker = () => {
       });
     }
   };
+  
+  // Effect to connect video stream to video element when ref is available
+  useEffect(() => {
+    if (videoStream && videoRef.current) {
+      videoRef.current.srcObject = videoStream;
+    }
+  }, [videoStream, videoRef.current]);
   
   // Stop camera when component unmounts
   useEffect(() => {
@@ -134,6 +146,19 @@ export const AIWorkoutTracker = () => {
     return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   };
 
+  // Helper function to reset everything
+  const resetTracker = () => {
+    if (videoStream) {
+      videoStream.getTracks().forEach(track => track.stop());
+      setVideoStream(null);
+    }
+    setIsTracking(false);
+    setElapsed(0);
+    setCurrentReps(0);
+    setFormCorrection(null);
+    setCameraPermission('pending');
+  };
+
   return (
     <div className="glass-card p-6 relative overflow-hidden">
       <div className="flex items-center justify-between mb-6">
@@ -162,7 +187,7 @@ export const AIWorkoutTracker = () => {
         <div className="relative bg-black/40 rounded-lg overflow-hidden aspect-video flex items-center justify-center">
           {videoStream ? (
             <video 
-              id="workout-camera"
+              ref={videoRef}
               autoPlay 
               playsInline
               muted 
@@ -175,7 +200,9 @@ export const AIWorkoutTracker = () => {
               </div>
               <h4 className="mb-2 text-lg font-semibold">Camera Access Required</h4>
               <p className="text-sm text-gray-400 mb-4">
-                Enable your camera to track workout form and count reps automatically
+                {cameraPermission === 'denied' 
+                  ? 'Camera access was denied. Please check your browser settings and try again.'
+                  : 'Enable your camera to track workout form and count reps automatically'}
               </p>
               <button 
                 onClick={toggleCamera}
@@ -283,13 +310,7 @@ export const AIWorkoutTracker = () => {
             </button>
             <button 
               className="btn-red w-full"
-              onClick={() => {
-                if (videoStream) {
-                  videoStream.getTracks().forEach(track => track.stop());
-                  setVideoStream(null);
-                  setIsTracking(false);
-                }
-              }}
+              onClick={resetTracker}
               disabled={!videoStream}
             >
               Reset
