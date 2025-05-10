@@ -28,10 +28,9 @@ export const ThemeToggle = () => {
   }, [isDark]);
 
   const toggleTheme = () => {
-    const newIsDark = !isDark;
-    setIsDark(newIsDark);
+    setIsDark(!isDark);
     toast({
-      title: `Theme changed to ${newIsDark ? 'dark' : 'light'} mode`,
+      title: `Theme changed to ${!isDark ? 'dark' : 'light'} mode`,
       description: "Your preference has been saved.",
       duration: 2000,
     });
@@ -40,10 +39,10 @@ export const ThemeToggle = () => {
   return (
     <button
       onClick={toggleTheme}
-      className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 ${
+      className={`w-9 h-9 rounded-full flex items-center justify-center transition-colors ${
         isDark 
-          ? 'bg-secondary/30 text-gray-300 hover:text-glow-green hover:bg-secondary/50'
-          : 'bg-secondary/80 text-gray-700 hover:text-glow-red/90 hover:bg-secondary'
+          ? 'bg-secondary/30 text-gray-300 hover:text-glow-green'
+          : 'bg-secondary text-gray-700 hover:text-glow-red'
       }`}
       aria-label="Toggle theme"
     >
