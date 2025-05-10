@@ -44,16 +44,14 @@ export const AIWorkoutTracker = () => {
           videoRef.current.srcObject = stream;
         }
         
-        toast({
-          title: "Camera activated",
-          description: "AI workout tracking is now available.",
+        toast("Camera activated", {
+          description: "AI workout tracking is now available."
         });
       }
     } catch (error) {
       console.error("Camera access error:", error);
       setCameraPermission('denied');
-      toast({
-        title: "Camera access denied",
+      toast("Camera access denied", {
         description: "Please enable camera permissions for workout tracking.",
         variant: "destructive",
       });
@@ -92,24 +90,21 @@ export const AIWorkoutTracker = () => {
       setFormCorrection(null);
       
       // Start the session
-      toast({
-        title: "Workout tracking started",
-        description: `Now tracking: ${exerciseName}`,
+      toast("Workout tracking started", {
+        description: `Now tracking: ${exerciseName}`
       });
     } else {
       // End the session
-      toast({
-        title: "Workout complete!",
-        description: `You completed ${currentReps} reps of ${exerciseName}`,
+      toast("Workout complete!", {
+        description: `You completed ${currentReps} reps of ${exerciseName}`
       });
       
       // Simulate analysis
       setIsAnalyzing(true);
       setTimeout(() => {
         setIsAnalyzing(false);
-        toast({
-          title: "Workout analyzed",
-          description: "Great effort! See your results below.",
+        toast("Workout analyzed", {
+          description: "Great effort! See your results below."
         });
       }, 2000);
     }
