@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import { Dumbbell, Play, Pause, RotateCcw, Activity, CheckCircle } from 'lucide-react';
 import { toast } from '@/components/ui/sonner';
@@ -52,8 +51,7 @@ export const AIWorkoutTracker = () => {
       console.error("Camera access error:", error);
       setCameraPermission('denied');
       toast("Camera access denied", {
-        description: "Please enable camera permissions for workout tracking.",
-        variant: "destructive",
+        description: "Please enable camera permissions for workout tracking."
       });
     }
   };
