@@ -28,9 +28,10 @@ export const ThemeToggle = () => {
   }, [isDark]);
 
   const toggleTheme = () => {
-    setIsDark(!isDark);
+    const newIsDark = !isDark;
+    setIsDark(newIsDark);
     toast({
-      title: `Theme changed to ${!isDark ? 'dark' : 'light'} mode`,
+      title: `Theme changed to ${newIsDark ? 'dark' : 'light'} mode`,
       description: "Your preference has been saved.",
       duration: 2000,
     });

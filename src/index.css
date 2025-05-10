@@ -8,8 +8,8 @@
 
 @layer base {
   :root {
-    --background: 0 0% 98%;
-    --foreground: 240 10% 3.9%;
+    --background: 0 0% 100%; /* Pure white background */
+    --foreground: 240 10% 3.9%; /* Near black text */
     
     --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;
@@ -38,7 +38,7 @@
 
     --radius: 0.75rem;
 
-    --sidebar-background: 0 0% 98%;
+    --sidebar-background: 0 0% 100%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
     --sidebar-primary-foreground: 0 0% 98%;
@@ -115,7 +115,7 @@
   }
   
   .glass-card {
-    @apply dark:bg-black/40 bg-white/40 backdrop-blur-md border dark:border-white/10 border-gray-200/50 rounded-md;
+    @apply dark:bg-black/40 bg-white/80 backdrop-blur-md border dark:border-white/10 border-gray-200/50 rounded-md;
   }
 
   .btn-glow {
@@ -129,11 +129,11 @@
   }
 
   .light .glow-card {
-    @apply bg-white/80 border-glow-green/20 shadow-md hover:border-glow-green/50;
+    @apply bg-white/95 border-glow-green/20 shadow-md hover:border-glow-green/50;
   }
   
   .light .glass-card {
-    @apply bg-white/80 border-gray-200;
+    @apply bg-white/95 border-gray-200;
   }
   
   .light .btn-glow {
@@ -144,6 +144,10 @@
   .light .btn-red {
     @apply bg-glow-red/90 border-glow-red text-white
            hover:bg-glow-red hover:shadow-[0_0_10px_#FF3B3B];
+  }
+
+  .light .navbar-bg {
+    @apply bg-white/95 border-b border-gray-200;
   }
 }
 
