@@ -118,6 +118,10 @@ export default {
                 'fade-in': {
                     '0%': { opacity: '0' },
                     '100%': { opacity: '1' }
+                },
+                'spin-slow': {
+                    '0%': { transform: 'rotate(0deg)' },
+                    '100%': { transform: 'rotate(360deg)' }
                 }
 			},
 			animation: {
@@ -126,7 +130,8 @@ export default {
                 'glow-pulse': 'glow-pulse 2s infinite ease-in-out',
                 'float': 'float 6s ease-in-out infinite',
                 'wiggle': 'wiggle 1s ease-in-out infinite',
-                'fade-in': 'fade-in 0.5s ease-out'
+                'fade-in': 'fade-in 0.5s ease-out',
+                'spin-slow': 'spin-slow 8s linear infinite'
 			}
 		}
 	},
