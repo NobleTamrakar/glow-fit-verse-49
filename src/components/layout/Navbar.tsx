@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, Lock } from "lucide-react";
 import { ThemeToggle } from '../ui/ThemeToggle';
+import { Button } from '../ui/button';
 
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -45,21 +46,29 @@ export const Navbar = () => {
           <div className="flex items-center gap-4">
             <ThemeToggle />
             <div className="relative">
-              <Link 
-                to="/profile" 
+              <Button 
+                variant="ghost"
+                size="icon"
+                asChild
                 className="hidden md:flex items-center justify-center w-9 h-9 rounded-full bg-glow-green/20 border border-glow-green/50 dark:text-white text-gray-800 hover:bg-glow-green/30 transition-colors"
               >
-                <span>PL</span>
-              </Link>
+                <Link to="/profile">
+                  <span>PL</span>
+                </Link>
+              </Button>
             </div>
             
             {/* Mobile menu button */}
-            <button
+            <Button
+              variant="ghost"
+              size="icon"
               className="md:hidden dark:text-white text-gray-800 hover:text-glow-green"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-expanded={isMenuOpen}
+              aria-label="Toggle menu"
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+            </Button>
           </div>
         </div>
       </div>

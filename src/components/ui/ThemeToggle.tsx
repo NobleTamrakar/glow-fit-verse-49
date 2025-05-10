@@ -1,7 +1,8 @@
 
 import { useState, useEffect } from 'react';
 import { Moon, Sun } from 'lucide-react';
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
+import { Button } from "./button";
 
 export const ThemeToggle = () => {
   const { toast } = useToast();
@@ -37,8 +38,10 @@ export const ThemeToggle = () => {
   };
 
   return (
-    <button
+    <Button
       onClick={toggleTheme}
+      variant="ghost"
+      size="icon"
       className={`w-9 h-9 rounded-full flex items-center justify-center transition-colors ${
         isDark 
           ? 'bg-secondary/30 text-gray-300 hover:text-glow-green'
@@ -47,6 +50,6 @@ export const ThemeToggle = () => {
       aria-label="Toggle theme"
     >
       {isDark ? <Sun size={18} /> : <Moon size={18} />}
-    </button>
+    </Button>
   );
 };
